@@ -1,0 +1,5 @@
+FROM rabbitmq:3
+
+RUN service rabbitmq-server start && rabbitmq-plugins enable rabbitmq_management
+
+EXPOSE 15672
