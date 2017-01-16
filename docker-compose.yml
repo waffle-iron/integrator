@@ -1,0 +1,33 @@
+version: '2'
+services:
+    apache:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                - http_proxy=$http_proxy
+                - no_proxy=$no_proxy
+        environment:
+            - http_proxy=$http_proxy
+            - no_proxy=$no_proxy
+        volumes:
+            - ./:/var/www/html
+            - ~/.ssh:/root/.ssh
+            - ~/.composer:/root/.composer
+        links:
+            - rabbit
+        ports:
+            - "9071:9001"
+            - "8071:80"
+        env_file:
+            - .env
+    rabbit:
+        build:
+            context: .
+            dockerfile: provisioning/Dockerfile.rabbitmq
+        environment:
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: mestre
+        ports:
+            - 15673:15672
+            - 56723:5672
