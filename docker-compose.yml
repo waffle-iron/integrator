@@ -1,12 +1,5 @@
 version: '2'
 services:
-    php-cli:
-        image: lojassimonetti/php-cli-docker:latest
-        volumes:
-            - ./:/app
-        environment:
-            - http_proxy=$http_proxy
-            - no_proxy=$no_proxy
     apache:
         build:
             context: .
@@ -36,5 +29,5 @@ services:
             RABBITMQ_DEFAULT_USER: admin
             RABBITMQ_DEFAULT_PASS: mestre
         ports:
-          - 15673:15672
-          - 56723:5672
+            - 15673:15672
+            - 56723:5672
