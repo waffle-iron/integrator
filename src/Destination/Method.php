@@ -1,6 +1,6 @@
 <?php
 
-namespace Simonetti\Integrador\Destination;
+namespace Simonetti\IntegradorFinanceiro\Destination;
 
 
 class Method

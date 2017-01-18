@@ -2,9 +2,9 @@
 
 namespace Simonetti\Integrador\Tests;
 
-use Simonetti\Integrador\Destination\Method;
+use Simonetti\IntegradorFinanceiro\Destination\Method;
 
-class MethodTests extends \PHPUnit_Framework_TestCase
+class MethodTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testValidateProperties()
@@ -14,8 +14,8 @@ class MethodTests extends \PHPUnit_Framework_TestCase
         $this->assertEquals('IncluirPessoaJuridica', $method->getDescription());
         $this->assertEquals(12210, $method->getIdentifier());
         $this->assertEquals(['nome' => 'Basilio Ferraz', 'cpf' => 15717815794], $method->getParams());
-        $this->assertArrayHasKey('nome', [$method->getParams()]);
-        $this->assertArrayHasKey('cpf', [$method->getParams()]);
+        $this->assertArrayHasKey('nome', $method->getParams());
+        $this->assertArrayHasKey('cpf', $method->getParams());
     }
 
 }
