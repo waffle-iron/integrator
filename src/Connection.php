@@ -52,7 +52,7 @@ class Connection
      * @param int $port Port of the database
      * @param string $driver Driver to use when connecting
      */
-    public function __construct($dbname, $user, $password, $host, $port, $driver)
+    public function __construct(string $dbname, string $user, string $password, string $host, int $port, string $driver)
     {
         $this->dbname = $dbname;
         $this->user = $user;
