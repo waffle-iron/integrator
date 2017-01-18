@@ -1,24 +1,11 @@
 version: '2'
 services:
-    apache:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            args:
-                - http_proxy=$http_proxy
-                - no_proxy=$no_proxy
-        environment:
-            - http_proxy=$http_proxy
-            - no_proxy=$no_proxy
+    cli:
+        image: lojassimonetti/php-cli-docker:latest
         volumes:
-            - ./:/var/www/html
+            - ./:/app
             - ~/.ssh:/root/.ssh
             - ~/.composer:/root/.composer
-        links:
-            - rabbit
-        ports:
-            - "9071:9001"
-            - "8071:80"
         env_file:
             - .env
     rabbit:
