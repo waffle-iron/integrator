@@ -26,7 +26,7 @@ class DataMapping
     /**
      * Informed the key the system makes the comparison
      * @param $key
-     * @return array
+     * @return string
      */
     public function getColumnByKey($key)
     {
