@@ -2,7 +2,10 @@
 
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
-
+/**
+ * Class Method
+ * @package Simonetti\IntegradorFinanceiro\Destination
+ */
 class Method
 {
     /**
