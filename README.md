@@ -1,2 +1,14 @@
-# integrador-financeiro
-integrador financeiro
+# Integrador
+
+## Install dependecies
+
+```
+./cli/composer install
+
+```
+
+## Run Unit Tests
+
+```
+./cli/phpunit
+```

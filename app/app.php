@@ -5,10 +5,14 @@ if (!defined('APP_PATH')) {
     define('APP_PATH', __DIR__);
 }
 
-$app = new Application();
-$app['debug'] = true;
-
 require_once __DIR__ . '/config.php';
+
+$app = new Application();
+
+if ('prod' == APP_ENV) {
+    $app['debug'] = true;
+}
+
 require_once __DIR__ . '/providers.php';
 
 return $app;
