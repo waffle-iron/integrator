@@ -16,9 +16,9 @@ class DataMapping
 
     /**
      * DataMapping constructor.
-     * @param $columns
+     * @param array $columns
      */
-    public function __construct($columns)
+    public function __construct(array $columns)
     {
         $this->columns = $columns;
     }
