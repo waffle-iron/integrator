@@ -2,7 +2,8 @@
 
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as MethodsCollection;
+
 
 /**
  * Class Destination
@@ -36,7 +37,7 @@ class Destination
 
     /**
      * Destination methods
-     * @var ArrayCollection
+     * @var MethodsCollection
      */
     protected $methods;
 
@@ -86,9 +87,9 @@ class Destination
     }
 
     /**
-     * @return ArrayCollection
+     * @return MethodsCollection
      */
-    public function getMethods(): ArrayCollection
+    public function getMethods(): MethodsCollection
     {
         return $this->methods;
     }
