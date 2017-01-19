@@ -8,6 +8,12 @@ namespace Simonetti\IntegradorFinanceiro;
 class Connection
 {
     /**
+     * Connection ID
+     * @var int
+     */
+    protected $id;
+
+    /**
      * Name of the database/schema
      * @var string
      */
@@ -60,6 +66,14 @@ class Connection
         $this->host = $host;
         $this->port = $port;
         $this->driver = $driver;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**

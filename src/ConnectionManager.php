@@ -22,11 +22,11 @@ class ConnectionManager
      */
     public function getConnection(Connection $connection): DBALConnection
     {
-        if (isset(self::$connections[$connection->getDriver()])) {
-            return self::$connections[$connection->getDriver()];
+        if (isset(self::$connections[$connection->getId()])) {
+            return self::$connections[$connection->getId()];
         }
 
-        self::$connections[$connection->getDriver()] = DriverManager::getConnection([
+        self::$connections[$connection->getId()] = DriverManager::getConnection([
             'dbname' => $connection->getDbname(),
             'user' => $connection->getUser(),
             'password' => $connection->getPassword(),
@@ -35,6 +35,6 @@ class ConnectionManager
             'port' => $connection->getPort(),
         ]);
 
-        return self::$connections[$connection->getDriver()];
+        return self::$connections[$connection->getId()];
     }
 }
