@@ -11,14 +11,14 @@ use Simonetti\IntegradorFinanceiro\ConnectionManager;
  */
 class ConnectionManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected function getConnection(int $id, string $driver = 'pdo_mysql')
+    protected function getConnection(int $connectionId, string $driver = 'pdo_mysql')
     {
         $mockConnection = $this->getMockBuilder(Connection::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockConnection->method('getId')
-            ->willReturn($id);
+            ->willReturn($connectionId);
 
         $mockConnection->method('getDriver')
             ->willReturn($driver);
