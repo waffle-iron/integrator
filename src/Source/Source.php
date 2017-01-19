@@ -5,6 +5,10 @@ namespace Simonetti\IntegradorFinanceiro\Source;
 use Doctrine\Common\Collections\ArrayCollection as DestinationsCollection;
 use Simonetti\IntegradorFinanceiro\Connection;
 
+/**
+ * Class Source
+ * @package Simonetti\IntegradorFinanceiro\Source
+ */
 class Source
 {
 
