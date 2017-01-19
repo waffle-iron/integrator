@@ -11,22 +11,22 @@ use Doctrine\DBAL\DriverManager;
 class ConnectionManager
 {
     /**
-     * DBAL Connection
-     * @var DBALConnection
+     * List of DBAL Connections
+     * @var DBALConnection[]
      */
-    protected static $connection;
+    protected static $connections;
 
     /**
      * @param Connection $connection Connection properties
      * @return DBALConnection
      */
-    public function getConnection(Connection $connection)
+    public function getConnection(Connection $connection): DBALConnection
     {
-        if (self::$connection) {
-            return self::$connection;
+        if (isset(self::$connections[$connection->getDriver()])) {
+            return self::$connections[$connection->getDriver()];
         }
 
-        self::$connection = DriverManager::getConnection([
+        self::$connections[$connection->getDriver()] = DriverManager::getConnection([
             'dbname' => $connection->getDbname(),
             'user' => $connection->getUser(),
             'password' => $connection->getPassword(),
@@ -35,6 +35,6 @@ class ConnectionManager
             'port' => $connection->getPort(),
         ]);
 
-        return self::$connection;
+        return self::$connections[$connection->getDriver()];
     }
 }
