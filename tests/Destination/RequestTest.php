@@ -4,7 +4,6 @@ namespace Simonetti\IntegradorFinanceiro\Tests\Destination;
 
 use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Destination\Request;
-use Simonetti\IntegradorFinanceiro\Source\Source;
 use Simonetti\IntegradorFinanceiro\Source\Request as SourceRequest;
 
 /**

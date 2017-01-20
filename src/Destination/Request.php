@@ -2,7 +2,6 @@
 
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
-use Simonetti\IntegradorFinanceiro\Source\Source;
 use Simonetti\IntegradorFinanceiro\Source\Request as SourceRequest;
 
 class Request
