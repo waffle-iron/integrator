@@ -1,0 +1,79 @@
+<?php
+namespace Simonetti\IntegradorFinanceiro\Destination;
+
+use Simonetti\IntegradorFinanceiro\ConnectionManager;
+use Simonetti\IntegradorFinanceiro\Source;
+
+/**
+ * Class RequestCreator
+ * @package Simonetti\IntegradorFinanceiro\Destination
+ */
+class RequestCreator
+{
+    /**
+     * Class to manage connection
+     * @var ConnectionManager
+     */
+    protected $connectionManager;
+
+    /**
+     * RequestCreator constructor.
+     * @param ConnectionManager $connectionManager Class to manage connection
+     */
+    public function __construct(ConnectionManager $connectionManager)
+    {
+        $this->connectionManager = $connectionManager;
+    }
+
+    /**
+     * @param Source\Request $sourceRequest Request Source
+     * @return array
+     */
+    public function create(Source\Request $sourceRequest)
+    {
+        $requests = [];
+
+        $dataList = $this->fetchDataList($sourceRequest);
+
+        foreach ($sourceRequest->getDestinations() as $destination) {
+            $dataObject = $this->createDataObject($destination, $dataList);
+
+            $requests[] = new Request($sourceRequest, $dataObject, $destination->getMethod());
+        }
+
+        return $requests;
+    }
+
+    /**
+     * @param Source\Request $sourceRequest Request Source
+     * @return array
+     * @throws \Exception
+     */
+    protected function fetchDataList(Source\Request $sourceRequest): array
+    {
+        $connection = $this->connectionManager->getConnection($sourceRequest->getConnection());
+        $dataList = $connection->fetchAll($sourceRequest->getSql())[0];
+
+        if (empty($dataList)) {
+            throw new \Exception("Nenhum registro encontrado na base de dados para compor a requisição.");
+        }
+
+        return $dataList;
+    }
+
+    /**
+     * @param Source\Destination $sourceDestination Destination of Source
+     * @param array $dataList Array with data
+     * @return \stdClass
+     */
+    protected function createDataObject(Source\Destination $sourceDestination, array $dataList): \stdClass
+    {
+        $dataList2Object = [];
+
+        foreach ($dataList as $key => $dataValue) {
+            $dataList2Object[$sourceDestination->getColumnByKey($key)] = $dataValue;
+        }
+
+        return (object)$dataList2Object;
+    }
+}
