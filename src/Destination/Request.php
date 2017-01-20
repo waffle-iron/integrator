@@ -3,14 +3,15 @@
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
 use Simonetti\IntegradorFinanceiro\Source\Source;
+use Simonetti\IntegradorFinanceiro\Source\Request as SourceRequest;
 
 class Request
 {
     /**
      * Source Request
-     * @var Source
+     * @var SourceRequest
      */
-    protected $source;
+    protected $sourceRequest;
 
     /**
      * Source Data
@@ -25,32 +26,27 @@ class Request
     protected $method;
 
     /**
-     * Source Method Identifier
-     * @var string
-     */
-    protected $methodIdentifier;
-
-    /**
      * Request constructor.
-     * @param Source $source
+     * @param SourceRequest $request
      * @param \stdClass $data
      * @param Method $method
-     * @param string $methodIdentifier
      */
-    public function __construct(Source $source, \stdClass $data, Method $method, string $methodIdentifier)
-    {
-        $this->source = $source;
+    public function __construct(
+        SourceRequest $request,
+        \stdClass $data,
+        Method $method
+    ) {
+        $this->sourceRequest = $request;
         $this->data = $data;
         $this->method = $method;
-        $this->methodIdentifier = $methodIdentifier;
     }
 
     /**
-     * @return Source
+     * @return SourceRequest
      */
-    public function getSource(): Source
+    public function getSourceRequest(): SourceRequest
     {
-        return $this->source;
+        return $this->sourceRequest;
     }
 
     /**
@@ -67,13 +63,5 @@ class Request
     public function getMethod(): Method
     {
         return $this->method;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethodIdentifier(): string
-    {
-        return $this->methodIdentifier;
     }
 }
