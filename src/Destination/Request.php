@@ -25,6 +25,12 @@ class Request
     protected $method;
 
     /**
+     * Request Method Identifier
+     * @var string
+     */
+    protected $methodIdentifier;
+
+    /**
      * Request constructor.
      * @param SourceRequest $sourceRequest
      * @param \stdClass $data
@@ -62,5 +68,13 @@ class Request
     public function getMethod(): Method
     {
         return $this->method;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMethodIdentifier()
+    {
+        return $this->method->getIdentifier();
     }
 }
