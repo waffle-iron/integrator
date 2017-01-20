@@ -5,6 +5,7 @@ namespace Simonetti\IntegradorFinanceiro\Tests\Destination;
 use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Destination\Request;
 use Simonetti\IntegradorFinanceiro\Source\Source;
+use Simonetti\IntegradorFinanceiro\Source\Request as SourceRequest;
 
 /**
  * Class RequestTest
@@ -15,7 +16,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateConstruct()
     {
-        $mockSource = $this->getMockBuilder(Source::class)
+        $mockSource = $this->getMockBuilder(SourceRequest::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -29,14 +30,11 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             'oldKey3' => 'newKey3',
         ];
 
-        $methodIdentifier = 121212;
-
-        $request = new Request($mockSource, (object)$data, $mockMethod, $methodIdentifier);
+        $request = new Request($mockSource, (object)$data, $mockMethod);
 
         $this->assertInstanceOf(Request::class, $request);
-        $this->assertEquals($methodIdentifier, $request->getMethodIdentifier());
         $this->assertEquals((object)$data, $request->getData());
-        $this->assertInstanceOf(Source::class, $request->getSource());
+        $this->assertInstanceOf(SourceRequest::class, $request->getSourceRequest());
         $this->assertInstanceOf(Method::class, $request->getMethod());
     }
 

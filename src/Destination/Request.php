@@ -27,16 +27,16 @@ class Request
 
     /**
      * Request constructor.
-     * @param SourceRequest $request
+     * @param SourceRequest $sourceRequest
      * @param \stdClass $data
      * @param Method $method
      */
     public function __construct(
-        SourceRequest $request,
+        SourceRequest $sourceRequest,
         \stdClass $data,
         Method $method
     ) {
-        $this->sourceRequest = $request;
+        $this->sourceRequest = $sourceRequest;
         $this->data = $data;
         $this->method = $method;
     }
