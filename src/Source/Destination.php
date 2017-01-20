@@ -2,6 +2,7 @@
 namespace Simonetti\IntegradorFinanceiro\Source;
 
 use Simonetti\IntegradorFinanceiro\Destination\Destination as FinalDestination;
+use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
 
 /**
@@ -17,6 +18,12 @@ class Destination
     protected $destination;
 
     /**
+     * Destination method
+     * @var Method
+     */
+    protected $method;
+
+    /**
      * Data mapping
      * @var DataMapping
      */
@@ -25,11 +32,13 @@ class Destination
     /**
      * Destination constructor.
      * @param FinalDestination $destination
+     * @param Method $method
      * @param DataMapping $dataMapping
      */
-    public function __construct(FinalDestination $destination, DataMapping $dataMapping)
+    public function __construct(FinalDestination $destination, Method $method, DataMapping $dataMapping)
     {
         $this->destination = $destination;
+        $this->method = $method;
         $this->dataMapping = $dataMapping;
     }
 
@@ -39,6 +48,14 @@ class Destination
     public function getDestination(): FinalDestination
     {
         return $this->destination;
+    }
+
+    /**
+     * @return Method
+     */
+    public function getMethod(): Method
+    {
+        return $this->method;
     }
 
     /**

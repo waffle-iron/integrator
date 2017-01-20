@@ -22,7 +22,7 @@ class Method
 
     /**
      * Method Identifier
-     * @var int
+     * @var string
      */
     protected $identifier;
 
@@ -35,10 +35,10 @@ class Method
     /**
      * Method constructor.
      * @param string $description
-     * @param int $identifier
+     * @param string $identifier
      * @param array $param
      */
-    public function __construct(string $description, int $identifier, array $param)
+    public function __construct(string $description, string $identifier, array $param)
     {
         $this->description = $description;
         $this->identifier = $identifier;
@@ -62,9 +62,9 @@ class Method
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdentifier(): int
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }

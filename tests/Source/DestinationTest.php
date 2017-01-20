@@ -2,6 +2,7 @@
 namespace Simonetti\IntegradorFinanceiro\Tests\Source;
 
 use Simonetti\IntegradorFinanceiro\Destination\Destination as FinalDestination;
+use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Source\Destination as SourceDestination;
 
 /**
@@ -16,6 +17,11 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
     protected $finalDestination;
 
     /**
+     * @var Method
+     */
+    protected $method;
+
+    /**
      * @var SourceDestination\DataMapping
      */
     protected $dataMapping;
@@ -23,6 +29,7 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->finalDestination = $this->getFinalDestination();
+        $this->method = $this->getMethod();
         $this->dataMapping = $this->getDataMapping();
     }
 
@@ -36,6 +43,19 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
         $bridge = 'test';
 
         return new FinalDestination($identifier, $name, $bridge);
+    }
+
+    protected function getMethod()
+    {
+        $description = 'Test';
+        $identifier = 'test';
+        $param = [
+            'column1' => 'value1',
+            'column2' => 'value2',
+            'column3' => 'value3',
+        ];
+
+        return new Method($description, $identifier, $param);
     }
 
     /**
@@ -57,7 +77,7 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
      */
     protected function getSourceDestination()
     {
-        return new SourceDestination($this->finalDestination, $this->dataMapping);
+        return new SourceDestination($this->finalDestination, $this->getMethod(), $this->dataMapping);
     }
 
     public function testConstructor()
@@ -66,6 +86,8 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($this->finalDestination, $sourceDestination->getDestination());
         $this->assertInstanceOf(FinalDestination::class, $sourceDestination->getDestination());
+        $this->assertEquals($this->method, $sourceDestination->getMethod());
+        $this->assertInstanceOf(Method::class, $sourceDestination->getMethod());
         $this->assertEquals($this->dataMapping, $sourceDestination->getDataMapping());
         $this->assertInstanceOf(SourceDestination\DataMapping::class, $sourceDestination->getDataMapping());
     }
