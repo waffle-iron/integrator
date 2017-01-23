@@ -8,6 +8,16 @@ services:
             - ~/.composer:/root/.composer
         env_file:
             - .env
+    apache:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/var/www/html
+            - ~/.ssh:/root/.ssh
+            - ~/.composer:/root/.composer
+        ports:
+            - 8090:80
     rabbit:
         build:
             context: .
