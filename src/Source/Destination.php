@@ -1,6 +1,13 @@
 <?php
 namespace Simonetti\IntegradorFinanceiro\Source;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Embedded;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\Table;
 use Simonetti\IntegradorFinanceiro\Destination\Destination as FinalDestination;
 use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
@@ -8,36 +15,52 @@ use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
 /**
  * Class Destination
  * @package Simonetti\IntegradorFinanceiro\Source
+ * @Entity()
+ * @Table(name="destino")
  */
 class Destination
 {
     /**
+     * Destination ID
+     * @Id()
+     * @Column(type="integer", name="id")
+     * @GeneratedValue(strategy="AUTO")
+     * @var int
+     */
+    protected $id;
+
+    /**
      * Final destination
+     * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Destination")
+     * @JoinColumn(name="destino_final_id", referencedColumnName="id")
      * @var FinalDestination
      */
-    protected $destination;
+    protected $finalDestination;
 
     /**
      * Destination method
+     * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
+     * @JoinColumn(name="metodo_id", referencedColumnName="id")
      * @var Method
      */
     protected $method;
 
     /**
      * Data mapping
+     * @Embedded(class="DataMapping", columnPrefix=false)
      * @var DataMapping
      */
     protected $dataMapping;
 
     /**
      * Destination constructor.
-     * @param FinalDestination $destination
+     * @param FinalDestination $finalDestination
      * @param Method $method
      * @param DataMapping $dataMapping
      */
-    public function __construct(FinalDestination $destination, Method $method, DataMapping $dataMapping)
+    public function __construct(FinalDestination $finalDestination, Method $method, DataMapping $dataMapping)
     {
-        $this->destination = $destination;
+        $this->finalDestination = $finalDestination;
         $this->method = $method;
         $this->dataMapping = $dataMapping;
     }
@@ -45,9 +68,9 @@ class Destination
     /**
      * @return FinalDestination
      */
-    public function getDestination(): FinalDestination
+    public function getFinalDestination(): FinalDestination
     {
-        return $this->destination;
+        return $this->finalDestination;
     }
 
     /**

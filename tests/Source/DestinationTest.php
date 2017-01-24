@@ -84,8 +84,8 @@ class DestinationTest extends \PHPUnit_Framework_TestCase
     {
         $sourceDestination = $this->getSourceDestination();
 
-        $this->assertEquals($this->finalDestination, $sourceDestination->getDestination());
-        $this->assertInstanceOf(FinalDestination::class, $sourceDestination->getDestination());
+        $this->assertEquals($this->finalDestination, $sourceDestination->getFinalDestination());
+        $this->assertInstanceOf(FinalDestination::class, $sourceDestination->getFinalDestination());
         $this->assertEquals($this->method, $sourceDestination->getMethod());
         $this->assertInstanceOf(Method::class, $sourceDestination->getMethod());
         $this->assertEquals($this->dataMapping, $sourceDestination->getDataMapping());

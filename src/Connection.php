@@ -1,14 +1,25 @@
 <?php
 namespace Simonetti\IntegradorFinanceiro;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
+
 /**
  * Class Connection
  * @package Simonetti\IntegradorFinanceiro
+ * @Entity()
+ * @Table(name="conexao")
  */
 class Connection
 {
     /**
      * Connection ID
+     * @Id()
+     * @Column(type="integer", name="id")
+     * @GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
@@ -16,35 +27,41 @@ class Connection
     /**
      * Name of the database/schema
      * @var string
+     * @Column(type="string", name="dbname")
      */
     protected $dbname;
 
     /**
      * Username to use when connecting
+     * @Column(type="string", name="user")
      * @var string
      */
     protected $user;
 
     /**
      * Password to use when connecting
+     * @Column(type="string", name="password")
      * @var string
      */
     protected $password;
 
     /**
      * Hostname of the database
+     * @Column(type="string", name="host")
      * @var string
      */
     protected $host;
 
     /**
      * Port of the database
-     * @var integer
+     * @Column(type="integer", name="port")
+     * @var int
      */
     protected $port;
 
     /**
      * Driver to use when connecting
+     * @Column(type="string", name="driver")
      * @var string
      */
     protected $driver;
