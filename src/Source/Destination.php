@@ -16,7 +16,7 @@ use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
  * Class Destination
  * @package Simonetti\IntegradorFinanceiro\Source
  * @Entity()
- * @Table(name="destino")
+ * @Table(name="destination")
  */
 class Destination
 {
@@ -32,7 +32,7 @@ class Destination
     /**
      * Final destination
      * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Destination")
-     * @JoinColumn(name="destino_final_id", referencedColumnName="id")
+     * @JoinColumn(name="final_destination_id", referencedColumnName="id")
      * @var FinalDestination
      */
     protected $finalDestination;
@@ -40,7 +40,7 @@ class Destination
     /**
      * Destination method
      * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
-     * @JoinColumn(name="metodo_id", referencedColumnName="id")
+     * @JoinColumn(name="method_id", referencedColumnName="id")
      * @var Method
      */
     protected $method;

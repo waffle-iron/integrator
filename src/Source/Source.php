@@ -15,7 +15,7 @@ use Simonetti\IntegradorFinanceiro\Connection;
  * Class Source
  * @package Simonetti\IntegradorFinanceiro\Source
  * @Entity()
- * @Table(name="origem")
+ * @Table(name="source")
  */
 class Source
 {
@@ -31,7 +31,7 @@ class Source
 
     /**
      * Source Identifier
-     * @Column(type="string", name="identificador")
+     * @Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;
@@ -39,7 +39,7 @@ class Source
     /**
      * Data connection to database
      * @ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Connection")
-     * @ORM\JoinColumn(name="conexao_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="connection_id", referencedColumnName="id")
      * @var Connection
      */
     protected $connection;

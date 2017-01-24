@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping\Table;
  * Class Destination
  * @package Simonetti\IntegradorFinanceiro\Destination
  * @Entity()
- * @Table(name="destino_final")
+ * @Table(name="final_destination")
  */
 class Destination
 {
@@ -28,14 +28,14 @@ class Destination
 
     /**
      * Destination Identifier
-     * @Column(type="string", name="identificador")
+     * @Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;
 
     /**
      * Destination Name
-     * @Column(type="string", name="nome")
+     * @Column(type="string", name="name")
      * @var string
      */
     protected $name;

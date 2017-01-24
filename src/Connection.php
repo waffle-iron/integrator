@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Table;
  * Class Connection
  * @package Simonetti\IntegradorFinanceiro
  * @Entity()
- * @Table(name="conexao")
+ * @Table(name="connection")
  */
 class Connection
 {

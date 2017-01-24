@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Table;
  * Class Method
  * @package Simonetti\IntegradorFinanceiro\Destination
  * @Entity()
- * @Table(name="metodo")
+ * @Table(name="method")
  */
 class Method
 {
@@ -26,14 +26,14 @@ class Method
 
     /**
      * Method Description
-     * @Column(type="string", name="descricao")
+     * @Column(type="string", name="description")
      * @var string
      */
     protected $description;
 
     /**
      * Method Identifier
-     * @Column(type="string", name="identificador")
+     * @Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;
