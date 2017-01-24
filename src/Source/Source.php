@@ -3,42 +3,37 @@
 namespace Simonetti\IntegradorFinanceiro\Source;
 
 use Doctrine\Common\Collections\ArrayCollection as DestinationsCollection;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 use Simonetti\IntegradorFinanceiro\Connection;
 
 /**
  * Class Source
  * @package Simonetti\IntegradorFinanceiro\Source
- * @Entity()
- * @Table(name="source")
+ * @ORM\Entity()
+ * @ORM\Table(name="source")
  */
 class Source
 {
 
     /**
      * Source ID
-     * @Id()
-     * @Column(type="integer", name="id")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
      * Source Identifier
-     * @Column(type="string", name="identifier")
+     * @ORM\Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;
 
     /**
      * Data connection to database
-     * @ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Connection")
+     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Connection")
      * @ORM\JoinColumn(name="connection_id", referencedColumnName="id")
      * @var Connection
      */
@@ -46,7 +41,7 @@ class Source
 
     /**
      * Base SQL
-     * @Column(type="string", name="sql)
+     * @ORM\Column(type="string", name="sql)
      * @var string
      */
     protected $sql;

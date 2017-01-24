@@ -3,46 +3,43 @@
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
 use Doctrine\Common\Collections\Collection as MethodsCollection;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
 
 /**
  * Class Destination
  * @package Simonetti\IntegradorFinanceiro\Destination
- * @Entity()
- * @Table(name="final_destination")
+ * @ORM\Entity()
+ * @ORM\Table(name="final_destination")
  */
 class Destination
 {
     /**
      * Destination ID
-     * @Id()
-     * @Column(type="integer", name="id")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
      * Destination Identifier
-     * @Column(type="string", name="identifier")
+     * @ORM\Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;
 
     /**
      * Destination Name
-     * @Column(type="string", name="name")
+     * @ORM\Column(type="string", name="name")
      * @var string
      */
     protected $name;
 
     /**
      * Destination Bridge
-     * @Column(type="string", name="bridge")
+     * @ORM\Column(type="string", name="bridge")
      * @var string
      */
     protected $bridge;

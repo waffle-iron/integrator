@@ -1,13 +1,7 @@
 <?php
 namespace Simonetti\IntegradorFinanceiro\Source;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Embedded;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\OneToOne;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 use Simonetti\IntegradorFinanceiro\Destination\Destination as FinalDestination;
 use Simonetti\IntegradorFinanceiro\Destination\Method;
 use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
@@ -15,39 +9,39 @@ use Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping;
 /**
  * Class Destination
  * @package Simonetti\IntegradorFinanceiro\Source
- * @Entity()
- * @Table(name="destination")
+ * @ORM\Entity()
+ * @ORM\Table(name="destination")
  */
 class Destination
 {
     /**
      * Destination ID
-     * @Id()
-     * @Column(type="integer", name="id")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
      * Final destination
-     * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Destination")
-     * @JoinColumn(name="final_destination_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Destination")
+     * @ORM\JoinColumn(name="final_destination_id", referencedColumnName="id")
      * @var FinalDestination
      */
     protected $finalDestination;
 
     /**
      * Destination method
-     * @OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
-     * @JoinColumn(name="method_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
+     * @ORM\JoinColumn(name="method_id", referencedColumnName="id")
      * @var Method
      */
     protected $method;
 
     /**
      * Data mapping
-     * @Embedded(class="DataMapping", columnPrefix=false)
+     * @ORM\Embedded(class="DataMapping", columnPrefix=false)
      * @var DataMapping
      */
     protected $dataMapping;

@@ -2,38 +2,35 @@
 
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Method
  * @package Simonetti\IntegradorFinanceiro\Destination
- * @Entity()
- * @Table(name="method")
+ * @ORM\Entity()
+ * @ORM\Table(name="method")
  */
 class Method
 {
     /**
      * Method ID
-     * @Id()
-     * @Column(type="integer", name="id")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
      * Method Description
-     * @Column(type="string", name="description")
+     * @ORM\Column(type="string", name="description")
      * @var string
      */
     protected $description;
 
     /**
      * Method Identifier
-     * @Column(type="string", name="identifier")
+     * @ORM\Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;

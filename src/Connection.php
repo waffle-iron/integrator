@@ -1,25 +1,21 @@
 <?php
 namespace Simonetti\IntegradorFinanceiro;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Connection
  * @package Simonetti\IntegradorFinanceiro
- * @Entity()
- * @Table(name="connection")
+ * @ORM\Entity()
+ * @ORM\Table(name="connection")
  */
 class Connection
 {
     /**
      * Connection ID
-     * @Id()
-     * @Column(type="integer", name="id")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
@@ -27,41 +23,41 @@ class Connection
     /**
      * Name of the database/schema
      * @var string
-     * @Column(type="string", name="dbname")
+     * @ORM\Column(type="string", name="dbname")
      */
     protected $dbname;
 
     /**
      * Username to use when connecting
-     * @Column(type="string", name="user")
+     * @ORM\Column(type="string", name="user")
      * @var string
      */
     protected $user;
 
     /**
      * Password to use when connecting
-     * @Column(type="string", name="password")
+     * @ORM\Column(type="string", name="password")
      * @var string
      */
     protected $password;
 
     /**
      * Hostname of the database
-     * @Column(type="string", name="host")
+     * @ORM\Column(type="string", name="host")
      * @var string
      */
     protected $host;
 
     /**
      * Port of the database
-     * @Column(type="integer", name="port")
+     * @ORM\Column(type="integer", name="port")
      * @var int
      */
     protected $port;
 
     /**
      * Driver to use when connecting
-     * @Column(type="string", name="driver")
+     * @ORM\Column(type="string", name="driver")
      * @var string
      */
     protected $driver;
