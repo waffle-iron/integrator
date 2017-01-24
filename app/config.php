@@ -1,7 +1,7 @@
 <?php
 // MySQL
 define('DB_DRIVER', getenv('DB_DRIVER') ?: 'pdo_mysql');
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+define('DB_HOST', getenv('DB_HOST') ?: 'db');
 define('DB_USER', getenv('DB_USER') ?: 'root');
 define('DB_PASSWORD', getenv('DB_PASSWORD') ?: 'root');
 define('DB_NAME', getenv('DB_NAME') ?: '');

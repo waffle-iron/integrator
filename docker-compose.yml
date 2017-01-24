@@ -8,6 +8,18 @@ services:
             - ~/.composer:/root/.composer
         env_file:
             - .env
+    db:
+        image: mysql:5.7
+        working_dir: /var/www/html
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=test
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+        volumes:
+            - ./.data/db:/var/lib/mysql
+            - ./:/var/www/html
+            - /tmp:/tmp
     apache:
         build:
             context: .
@@ -16,6 +28,9 @@ services:
             - ./:/var/www/html
             - ~/.ssh:/root/.ssh
             - ~/.composer:/root/.composer
+        working_dir: /var/www/html
+        links:
+            - db
         ports:
             - 8090:80
     rabbit:
