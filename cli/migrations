@@ -1,1 +1,1 @@
-docker-compose run cli ./vendor/bin/doctrine-migrations $@
+./cli/app-console migrations:$@

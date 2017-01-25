@@ -25,7 +25,7 @@ if (true === $console->getHelperSet()->has('em')) {
 }
 
 $configuration = new Configuration($app['db'], $app['migrations.output_writer']);
-$configuration->setMigrationsDirectory(__DIR__ . '/migrations');
+$configuration->setMigrationsDirectory(__DIR__ . '/DoctrineMigrations');
 $configuration->setName('Integrador Financeiro');
 $configuration->setMigrationsNamespace('Simonetti\\IntegradorFinanceiro');
 $configuration->setMigrationsTableName('migrations_integrador_financeiro');
