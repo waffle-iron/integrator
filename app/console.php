@@ -27,4 +27,6 @@ $console->setHelperSet($helperSet);
 
 Doctrine\ORM\Tools\Console\ConsoleRunner::addCommands($console);
 
+include __DIR__ . '/migrations.php';
+
 $console->run();
