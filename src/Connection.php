@@ -1,14 +1,21 @@
 <?php
 namespace Simonetti\IntegradorFinanceiro;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Connection
  * @package Simonetti\IntegradorFinanceiro
+ * @ORM\Entity()
+ * @ORM\Table(name="connection")
  */
 class Connection
 {
     /**
      * Connection ID
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
@@ -16,35 +23,41 @@ class Connection
     /**
      * Name of the database/schema
      * @var string
+     * @ORM\Column(type="string", name="dbname")
      */
     protected $dbname;
 
     /**
      * Username to use when connecting
+     * @ORM\Column(type="string", name="user")
      * @var string
      */
     protected $user;
 
     /**
      * Password to use when connecting
+     * @ORM\Column(type="string", name="password")
      * @var string
      */
     protected $password;
 
     /**
      * Hostname of the database
+     * @ORM\Column(type="string", name="host")
      * @var string
      */
     protected $host;
 
     /**
      * Port of the database
-     * @var integer
+     * @ORM\Column(type="integer", name="port")
+     * @var int
      */
     protected $port;
 
     /**
      * Driver to use when connecting
+     * @ORM\Column(type="string", name="driver")
      * @var string
      */
     protected $driver;
