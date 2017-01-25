@@ -1,0 +1,60 @@
+<?php
+namespace Simonetti\IntegradorFinanceiro\Fixtures;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Simonetti\IntegradorFinanceiro\Connection;
+
+/**
+ * Class ConnectionFixture
+ * @package Simonetti\IntegradorFinanceiro\Fixtures
+ */
+class ConnectionFixture extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
+{
+    /**
+     * @var array
+     */
+    private $data = [
+        [
+            'dbname' => 'test',
+            'user' => 'root',
+            'password' => 'root',
+            'host' => 'localhost',
+            'port' => 3306,
+            'driver' => 'pdo_mysql',
+        ],
+    ];
+
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
+    {
+        foreach ($this->data as $data) {
+            $connection = new Connection(
+                $data['dbname'],
+                $data['user'],
+                $data['password'],
+                $data['host'],
+                $data['port'],
+                $data['driver']
+            );
+
+            $manager->persist($connection);
+
+            $this->addReference('connection', $connection);
+        }
+
+        $manager->flush();
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder(): int
+    {
+        return 1;
+    }
+}
