@@ -4,7 +4,7 @@ define('DB_DRIVER', getenv('DB_DRIVER') ?: 'pdo_mysql');
 define('DB_HOST', getenv('DB_HOST') ?: 'db');
 define('DB_USER', getenv('DB_USER') ?: 'root');
 define('DB_PASSWORD', getenv('DB_PASSWORD') ?: 'root');
-define('DB_NAME', getenv('DB_NAME') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'test');
 
 // Rabbit
 define('RABBIT_HOST', getenv('RABBIT_HOST') ?: 'rabbit');

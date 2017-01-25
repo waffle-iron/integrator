@@ -41,13 +41,18 @@ class Source
 
     /**
      * Base SQL
-     * @ORM\Column(type="string", name="sql")
+     * @ORM\Column(type="string", name="query")
      * @var string
      */
     protected $sql;
 
     /**
      * List of destinations
+     * @ORM\ManyToMany(targetEntity="Simonetti\IntegradorFinanceiro\Source\Destination")
+     * @ORM\JoinTable(name="source_destination",
+     *     joinColumns={@ORM\JoinColumn(name="source_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="destination_id", referencedColumnName="id")}
+     * )
      * @var DestinationsCollection
      */
     protected $destinations;

@@ -46,6 +46,11 @@ class Destination
 
     /**
      * Destination methods
+     * @ORM\ManyToMany(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
+     * @ORM\JoinTable(name="final_destination_method",
+     *     joinColumns={@ORM\JoinColumn(name="final_destination_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="method_id", referencedColumnName="id")}
+     * )
      * @var MethodsCollection
      */
     protected $methods;
@@ -101,5 +106,13 @@ class Destination
     public function getMethods(): MethodsCollection
     {
         return $this->methods;
+    }
+
+    /**
+     * @param Method $method
+     */
+    public function addMethod(Method $method)
+    {
+        $this->methods[] = $method;
     }
 }
