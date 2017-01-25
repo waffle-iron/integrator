@@ -2,26 +2,35 @@
 
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Method
  * @package Simonetti\IntegradorFinanceiro\Destination
+ * @ORM\Entity()
+ * @ORM\Table(name="method")
  */
 class Method
 {
     /**
      * Method ID
+     * @ORM\Id()
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
      * Method Description
+     * @ORM\Column(type="string", name="description")
      * @var string
      */
     protected $description;
 
     /**
      * Method Identifier
+     * @ORM\Column(type="string", name="identifier")
      * @var string
      */
     protected $identifier;

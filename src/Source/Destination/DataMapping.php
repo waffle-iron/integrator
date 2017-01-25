@@ -2,14 +2,18 @@
 
 namespace Simonetti\IntegradorFinanceiro\Source\Destination;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class DataMapping
  * @package Simonetti\IntegradorFinanceiro\Source\Destination
+ * @ORM\Embeddable()
  */
 class DataMapping
 {
     /**
      * Columns to make the systems meet
+     * @ORM\Column(type="array", name="columns")
      * @var array
      */
     private $columns;
