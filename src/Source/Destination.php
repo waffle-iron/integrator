@@ -41,7 +41,7 @@ class Destination
 
     /**
      * Data mapping
-     * @ORM\Embedded(class="DataMapping", columnPrefix=false)
+     * @ORM\Embedded(class="Simonetti\IntegradorFinanceiro\Source\Destination\DataMapping", columnPrefix=false)
      * @var DataMapping
      */
     protected $dataMapping;

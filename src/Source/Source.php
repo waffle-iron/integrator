@@ -41,7 +41,7 @@ class Source
 
     /**
      * Base SQL
-     * @ORM\Column(type="string", name="sql)
+     * @ORM\Column(type="string", name="sql")
      * @var string
      */
     protected $sql;
