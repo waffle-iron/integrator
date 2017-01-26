@@ -3,6 +3,7 @@ use Simonetti\IntegradorFinanceiro\ConnectionManager;
 use Simonetti\IntegradorFinanceiro\Services\RequestService;
 use Simonetti\IntegradorFinanceiro\Destination;
 use Simonetti\IntegradorFinanceiro\Source;
+use Simonetti\IntegradorFinanceiro\Rabbit;
 
 /* Repositories */
 $app['source.request.repository'] = function () use ($app) {
@@ -28,4 +29,9 @@ $app['request.service'] = function () use ($app) {
         $app['source.request.repository'],
         $app['destination.request.repository']
     );
+};
+
+/* Rabbit Consumers */
+$app['integrator_consumer'] = function () use ($app) {
+    return new Rabbit\IntegratorConsumer();
 };
