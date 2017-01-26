@@ -3,6 +3,7 @@ use Simonetti\IntegradorFinanceiro\ConnectionManager;
 use Simonetti\IntegradorFinanceiro\Services\RequestService;
 use Simonetti\IntegradorFinanceiro\Destination;
 use Simonetti\IntegradorFinanceiro\Source;
+use Simonetti\IntegradorFinanceiro\Services\SourceService;
 
 /* Repositories */
 $app['source.request.repository'] = function () use ($app) {
@@ -11,6 +12,10 @@ $app['source.request.repository'] = function () use ($app) {
 
 $app['destination.request.repository'] = function () use ($app) {
     return $app['orm.em']->getRepository(Destination\Request::class);
+};
+
+$app['source.repository'] = function () use ($app) {
+    return $app['orm.em']->getRepository(Source\Source::class);
 };
 
 /* Services */
@@ -28,4 +33,8 @@ $app['request.service'] = function () use ($app) {
         $app['source.request.repository'],
         $app['destination.request.repository']
     );
+};
+
+$app['source.service'] = function () use ($app) {
+    return new SourceService($app['source.repository']);
 };

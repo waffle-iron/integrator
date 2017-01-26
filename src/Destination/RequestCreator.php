@@ -55,7 +55,7 @@ class RequestCreator
         $dataList = $connection->fetchAll($sourceRequest->getSql())[0];
 
         if (empty($dataList)) {
-            throw new \Exception("Nenhum registro encontrado na base de dados para compor a requisição.");
+            throw new \Exception("No records found in the database to compose the request.");
         }
 
         return $dataList;
