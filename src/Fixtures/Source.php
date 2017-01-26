@@ -50,6 +50,8 @@ class SourceFixture extends AbstractFixture implements FixtureInterface, Ordered
             );
 
             $manager->persist($source);
+
+            $this->addReference('source', $source);
         }
 
         $manager->flush();
