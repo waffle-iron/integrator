@@ -30,9 +30,11 @@ class SourceRequestFixture extends AbstractFixture implements FixtureInterface, 
              */
             $source = $this->getReference('source');
 
-            $source = new Request($source, $data['query_parameter']);
+            $request = new Request($source, $data['query_parameter']);
 
-            $manager->persist($source);
+            $manager->persist($request);
+
+            $this->addReference('sourceRequest', $request);
         }
 
         $manager->flush();
