@@ -40,6 +40,7 @@ class Request
     /**
      * Request constructor.
      * @param Source $source Source of Request
+     * @param string $queryParameter Parameter of the Query
      */
     public function __construct(Source $source, string $queryParameter)
     {

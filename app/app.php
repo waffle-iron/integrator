@@ -14,5 +14,6 @@ if ('prod' == APP_ENV) {
 }
 
 require_once __DIR__ . '/providers.php';
+require_once __DIR__ . '/services.php';
 
 return $app;
