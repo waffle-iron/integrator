@@ -2,14 +2,15 @@
 use Simonetti\IntegradorFinanceiro\ConnectionManager;
 use Simonetti\IntegradorFinanceiro\Services\RequestService;
 use Simonetti\IntegradorFinanceiro\Destination;
+use Simonetti\IntegradorFinanceiro\Source;
 
 /* Repositories */
 $app['source.request.repository'] = function () use ($app) {
-    return $app['orm.em']->getRepository('Simonetti\\IntegradorFinanceiro\\Source\\Request');
+    return $app['orm.em']->getRepository(Source\Request::class);
 };
 
 $app['destination.request.repository'] = function () use ($app) {
-    return $app['orm.em']->getRepository('Simonetti\\IntegradorFinanceiro\\Destination\\Request');
+    return $app['orm.em']->getRepository(Destination\Request::class);
 };
 
 /* Services */
