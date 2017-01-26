@@ -3,6 +3,10 @@ namespace Simonetti\IntegradorFinanceiro\Source;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class RequestRepository
+ * @package Simonetti\IntegradorFinanceiro\Source
+ */
 class RequestRepository extends EntityRepository
 {
     /**
