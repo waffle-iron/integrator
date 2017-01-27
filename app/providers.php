@@ -68,3 +68,36 @@ if ($app['debug']) {
         }
     });
 }
+
+$app->register(new \fiunchinho\Silex\Provider\RabbitServiceProvider(),
+    [
+        'rabbit.connections' => [
+            'default' => [
+                'host'     => RABBIT_HOST,
+                'port'     => RABBIT_PORT,
+                'user'     => RABBIT_USER,
+                'password' => RABBIT_PASSWORD,
+                'vhost'    => RABBIT_VHOST,
+            ],
+        ],
+
+        // Producers
+        'rabbit.producers' => [
+            'integrator_producer'  => [
+                'connection'       => 'default',
+                'exchange_options' => ['name' => 'integrator_e', 'type' => 'topic'],
+                'queue_options'    => ['name' => 'integrator'],
+            ],
+        ],
+
+        // Consumers
+        'rabbit.consumers' => [
+            'integrator_consumer'  => [
+                'connection'       => 'default',
+                'exchange_options' => ['name' => 'integrator_e', 'type' => 'topic'],
+                'queue_options'    => ['name' => 'integrator'],
+                'callback'         => 'integrator_consumer',
+            ],
+        ],
+    ]
+);
