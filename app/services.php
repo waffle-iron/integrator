@@ -36,11 +36,14 @@ $app['request.service'] = function () use ($app) {
     );
 };
 
-/* Rabbit Consumers */
-$app['integrator_consumer'] = function () use ($app) {
-    return new Rabbit\IntegratorConsumer();
-};
-
 $app['source.service'] = function () use ($app) {
     return new SourceService($app['source.repository']);
+};
+
+/* Rabbit Consumers */
+$app['integrator_consumer'] = function () use ($app) {
+    return new Rabbit\IntegratorConsumer(
+        $app['request.service'],
+        $app['rabbit.producer']['integrator_producer']
+    );
 };

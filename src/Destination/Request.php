@@ -23,7 +23,7 @@ class Request
 
     /**
      * Source Request
-     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Source\Request")
+     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Source\Request", inversedBy="destinationRequests")
      * @ORM\JoinColumn(name="source_request_id", referencedColumnName="id")
      * @var SourceRequest
      */
