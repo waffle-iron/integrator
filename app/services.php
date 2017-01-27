@@ -4,6 +4,7 @@ use Simonetti\IntegradorFinanceiro\Services\RequestService;
 use Simonetti\IntegradorFinanceiro\Destination;
 use Simonetti\IntegradorFinanceiro\Source;
 use Simonetti\IntegradorFinanceiro\Rabbit;
+use Simonetti\IntegradorFinanceiro\Services\SourceService;
 
 /* Repositories */
 $app['source.request.repository'] = function () use ($app) {
@@ -12,6 +13,10 @@ $app['source.request.repository'] = function () use ($app) {
 
 $app['destination.request.repository'] = function () use ($app) {
     return $app['orm.em']->getRepository(Destination\Request::class);
+};
+
+$app['source.repository'] = function () use ($app) {
+    return $app['orm.em']->getRepository(Source\Source::class);
 };
 
 /* Services */
@@ -34,4 +39,8 @@ $app['request.service'] = function () use ($app) {
 /* Rabbit Consumers */
 $app['integrator_consumer'] = function () use ($app) {
     return new Rabbit\IntegratorConsumer();
+};
+
+$app['source.service'] = function () use ($app) {
+    return new SourceService($app['source.repository']);
 };
