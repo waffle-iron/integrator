@@ -5,6 +5,7 @@ use Simonetti\IntegradorFinanceiro\Destination;
 use Simonetti\IntegradorFinanceiro\Source;
 use Simonetti\IntegradorFinanceiro\Rabbit;
 use Simonetti\IntegradorFinanceiro\Services\SourceService;
+use Simonetti\IntegradorFinanceiro\BridgeFactory;
 
 /* Repositories */
 $app['source.request.repository'] = function () use ($app) {
@@ -34,6 +35,10 @@ $app['request.service'] = function () use ($app) {
         $app['source.request.repository'],
         $app['destination.request.repository']
     );
+};
+
+$app['bridge.factory'] = function () use ($app) {
+    return new BridgeFactory($app);
 };
 
 /* Rabbit Consumers */
