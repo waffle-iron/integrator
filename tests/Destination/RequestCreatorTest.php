@@ -37,7 +37,7 @@ class RequestCreatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage Nenhum registro encontrado na base de dados para compor a requisição
+     * @expectedExceptionMessage No records found in the database to compose the request.
      */
     public function testCreateMustThrowExceptionIfNotFoundData()
     {
