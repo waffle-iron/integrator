@@ -64,7 +64,7 @@ class BridgeFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testReturnBridgeCorrect()
+    public function testFactoryMustReturnCorrectBridge()
     {
         $factory = new BridgeFactory($this->container);
 
@@ -78,8 +78,8 @@ class BridgeFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory->addBridge($bridge, 'key');
 
-        $retorno = $factory->factory('key');
+        $return = $factory->factory('key');
 
-        $this->assertEquals($factory->getBridges()['key'], $retorno);
+        $this->assertEquals($bridge, $return);
     }
 }

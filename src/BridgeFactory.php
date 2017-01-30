@@ -43,7 +43,7 @@ class BridgeFactory
 
     /**
      * @param string $bridgeIdentifier
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
     public function factory(string $bridgeIdentifier)
