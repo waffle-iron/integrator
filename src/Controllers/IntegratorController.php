@@ -62,7 +62,7 @@ class IntegratorController
             $this->rabbitProducer->publish($sourceRequest->getId());
 
             return new JsonResponse([
-                'request_id' => $sourceRequest->getId(),
+                'requestId' => $sourceRequest->getId(),
             ]);
         } catch (\Exception $e) {
             return new JsonResponse([
