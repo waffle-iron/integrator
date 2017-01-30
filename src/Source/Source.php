@@ -9,7 +9,7 @@ use Simonetti\IntegradorFinanceiro\Connection;
 /**
  * Class Source
  * @package Simonetti\IntegradorFinanceiro\Source
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Simonetti\IntegradorFinanceiro\Source\SourceRepository")
  * @ORM\Table(name="source")
  */
 class Source

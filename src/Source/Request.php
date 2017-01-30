@@ -10,7 +10,7 @@ use Simonetti\IntegradorFinanceiro\Destination\Request as DestinationRequest;
 /**
  * Class Request
  * @package Simonetti\IntegradorFinanceiro\Source
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Simonetti\IntegradorFinanceiro\Source\RequestRepository")
  * @ORM\Table(name="source_request")
  */
 class Request
@@ -111,5 +111,13 @@ class Request
     public function getDestinationRequests(): DestinationRequestsCollection
     {
         return $this->destinationRequests;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceIdentifier(): string
+    {
+        return $this->source->getIdentifier();
     }
 }
