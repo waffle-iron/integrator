@@ -60,6 +60,26 @@ class BridgeFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory->addBridge($bridge, 'key');
 
-        $factory->factory('key');
+        $factory->factory('');
+    }
+
+
+    public function testReturnBridgeCorrect()
+    {
+        $factory = new BridgeFactory($this->container);
+
+        $bridge = (new class() implements BridgeInterface
+        {
+            public function integrate(Request $request)
+            {
+                return true;
+            }
+        });
+
+        $factory->addBridge($bridge, 'key');
+
+        $retorno = $factory->factory('key');
+
+        $this->assertEquals($factory->getBridges()['key'], $retorno);
     }
 }

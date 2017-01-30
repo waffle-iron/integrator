@@ -16,7 +16,8 @@ class BridgeFactory
     protected $container;
 
     /**
-     * Factory constructor.
+     * BridgeFactory constructor.
+     * @param Container $container
      */
     public function __construct(Container $container)
     {
@@ -42,12 +43,15 @@ class BridgeFactory
 
     /**
      * @param string $bridgeIdentifier
+     * @return array
      * @throws \Exception
      */
     public function factory(string $bridgeIdentifier)
     {
-        if (isset($this->bridges[$bridgeIdentifier])) {
+        if (!isset($this->bridges[$bridgeIdentifier])) {
             throw new \Exception('Bridge not found');
         }
+
+        return $this->bridges[$bridgeIdentifier];
     }
 }
