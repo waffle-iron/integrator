@@ -1,6 +1,4 @@
 <?php
-use Silex\Application;
-
-$app->mount('/api', function (Application $api) {
+$app->mount('/api', function ($api) {
     $api->post('/integrate/{sourceIdentifier}/{queryParameter}', 'integrator.controller:integrateAction');
 });

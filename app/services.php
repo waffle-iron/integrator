@@ -31,7 +31,7 @@ $app['destination.request.creator'] = function () use ($app) {
 
 $app['request.service'] = function () use ($app) {
     return new RequestService(
-        $app['connection_manager.service'],
+        $app['destination.request.creator'],
         $app['source.request.repository'],
         $app['destination.request.repository']
     );
@@ -49,6 +49,7 @@ $app['bridge.factory'] = function () use ($app) {
 $app['integrator_consumer'] = function () use ($app) {
     return new Rabbit\IntegratorConsumer(
         $app['request.service'],
-        $app['rabbit.producer']['integrator_producer']
+        $app['rabbit.producer']['integrator_producer'],
+        $app['bridge.factory']
     );
 };
