@@ -2,13 +2,15 @@
 namespace Simonetti\IntegradorFinanceiro\Source;
 
 use Doctrine\Common\Collections\ArrayCollection as DestinationsCollection;
+use Doctrine\Common\Collections\ArrayCollection as DestinationRequestsCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Simonetti\IntegradorFinanceiro\Connection;
+use Simonetti\IntegradorFinanceiro\Destination\Request as DestinationRequest;
 
 /**
  * Class Request
  * @package Simonetti\IntegradorFinanceiro\Source
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Simonetti\IntegradorFinanceiro\Source\RequestRepository")
  * @ORM\Table(name="source_request")
  */
 class Request
@@ -36,6 +38,13 @@ class Request
      * @var string
      */
     protected $queryPamameter;
+
+    /**
+     * Collection of Destination Requests
+     * @ORM\OneToMany(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Request", mappedBy="sourceRequest")
+     * @var DestinationRequestsCollection|DestinationRequest[]
+     */
+    protected $destinationRequests;
 
     /**
      * Request constructor.
@@ -94,5 +103,21 @@ class Request
     public function getQueryPamameter(): string
     {
         return $this->queryPamameter;
+    }
+
+    /**
+     * @return DestinationRequestsCollection|DestinationRequest[]
+     */
+    public function getDestinationRequests(): DestinationRequestsCollection
+    {
+        return $this->destinationRequests;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceIdentifier(): string
+    {
+        return $this->source->getIdentifier();
     }
 }

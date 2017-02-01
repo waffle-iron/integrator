@@ -77,4 +77,13 @@ class RequestService
 
         return $requests;
     }
+
+    /**
+     * @param int $sourceRequestId Source Request ID
+     * @return null|SourceRequest
+     */
+    public function findSourceRequest(int $sourceRequestId): ?SourceRequest
+    {
+        return $this->sourceRequestRepository->find($sourceRequestId);
+    }
 }

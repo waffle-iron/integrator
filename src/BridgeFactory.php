@@ -43,10 +43,10 @@ class BridgeFactory
 
     /**
      * @param string $bridgeIdentifier
-     * @return mixed
+     * @return BridgeInterface
      * @throws \Exception
      */
-    public function factory(string $bridgeIdentifier)
+    public function factory(string $bridgeIdentifier): BridgeInterface
     {
         if (!isset($this->bridges[$bridgeIdentifier])) {
             throw new \Exception('Bridge not found');

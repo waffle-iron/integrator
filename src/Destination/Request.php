@@ -2,12 +2,13 @@
 namespace Simonetti\IntegradorFinanceiro\Destination;
 
 use Doctrine\ORM\Mapping as ORM;
+use Simonetti\IntegradorFinanceiro\Source\Destination;
 use Simonetti\IntegradorFinanceiro\Source\Request as SourceRequest;
 
 /**
  * Class Request
  * @package Simonetti\IntegradorFinanceiro\Destination
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Simonetti\IntegradorFinanceiro\Destination\RequestRepository")
  * @ORM\Table(name="destination_request")
  */
 class Request
@@ -22,8 +23,16 @@ class Request
     protected $id;
 
     /**
+     * Destination
+     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Destination")
+     * @ORM\JoinColumn(name="destination_id", referencedColumnName="id")
+     * @var Destination
+     */
+    protected $destination;
+
+    /**
      * Source Request
-     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Source\Request")
+     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Source\Request", inversedBy="destinationRequests")
      * @ORM\JoinColumn(name="source_request_id", referencedColumnName="id")
      * @var SourceRequest
      */
@@ -37,27 +46,24 @@ class Request
     protected $data;
 
     /**
-     * Source Method
-     * @ORM\ManyToOne(targetEntity="Simonetti\IntegradorFinanceiro\Destination\Method")
-     * @ORM\JoinColumn(name="method_id", referencedColumnName="id")
-     * @var Method
-     */
-    protected $method;
-
-    /**
      * Request constructor.
+     * @param Destination $destination
      * @param SourceRequest $sourceRequest
      * @param \stdClass $data
-     * @param Method $method
      */
-    public function __construct(
-        SourceRequest $sourceRequest,
-        \stdClass $data,
-        Method $method
-    ) {
+    public function __construct(Destination $destination, SourceRequest $sourceRequest, \stdClass $data)
+    {
+        $this->destination = $destination;
         $this->sourceRequest = $sourceRequest;
         $this->data = $data;
-        $this->method = $method;
+    }
+
+    /**
+     * @return Destination
+     */
+    public function getDestination(): Destination
+    {
+        return $this->destination;
     }
 
     /**
@@ -81,6 +87,22 @@ class Request
      */
     public function getMethod(): Method
     {
-        return $this->method;
+        return $this->destination->getMethod();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBridge(): string
+    {
+        return $this->destination->getFinalDestination()->getBridge();
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestinationIdentifier(): string
+    {
+        return $this->destination->getFinalDestination()->getIdentifier();
     }
 }

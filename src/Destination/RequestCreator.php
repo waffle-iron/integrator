@@ -38,7 +38,7 @@ class RequestCreator
         foreach ($sourceRequest->getDestinations() as $destination) {
             $dataObject = $this->createDataObject($destination, $dataList);
 
-            $requests[] = new Request($sourceRequest, $dataObject, $destination->getMethod());
+            $requests[] = new Request($destination, $sourceRequest, $dataObject);
         }
 
         return $requests;

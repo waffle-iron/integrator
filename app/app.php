@@ -16,5 +16,6 @@ if ('prod' == APP_ENV) {
 require_once __DIR__ . '/providers.php';
 include_once __DIR__ . '/controllers.php';
 require_once __DIR__ . '/services.php';
+require_once __DIR__ . '/routers.php';
 
 return $app;
