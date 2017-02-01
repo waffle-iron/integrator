@@ -101,7 +101,7 @@ class Request
     /**
      * @return string
      */
-    public function getDestinationIdenfier(): string
+    public function getDestinationIdentifier(): string
     {
         return $this->destination->getFinalDestination()->getIdentifier();
     }

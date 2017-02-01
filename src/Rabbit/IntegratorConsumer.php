@@ -52,13 +52,11 @@ class IntegratorConsumer implements ConsumerInterface
             echo "Starting integration. Source: " . $sourceRequest->getSourceIdentifier() . PHP_EOL;
 
             foreach ($sourceRequest->getDestinationRequests() as $destinationRequest) {
-                echo "Integrating with " . $destinationRequest->getDestinationIdenfier() . PHP_EOL;
+                echo "Integrating with " . $destinationRequest->getDestinationIdentifier() . PHP_EOL;
 
                 $bridge = $this->bridgeFactory->factory($destinationRequest->getBridge());
                 $bridge->integrate($destinationRequest);
             }
-
-
 
             echo "Integration completed" . PHP_EOL;
         } catch (\Exception $e) {
